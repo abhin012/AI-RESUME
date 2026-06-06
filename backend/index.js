@@ -1,8 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const fs = require("fs");
+const path = require("path");
+
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
+}
+
+const uploadDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
 }
 
 console.log("MONGO_URI received:", process.env.MONGO_URI);
