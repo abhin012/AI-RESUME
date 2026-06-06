@@ -5,6 +5,8 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
+console.log("MONGO_URI received:", process.env.MONGO_URI);
+
 const resumeRoute = require("./routes/resume");
 
 const app = express();
