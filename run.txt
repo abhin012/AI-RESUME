@@ -1,0 +1,4 @@
+mongod --dbpath C:\data\db
+node index.js, backend
+npm run dev
+http://localhost:5173
