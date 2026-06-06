@@ -29,7 +29,11 @@ function extractTextFromPDF(filePath) {
       pdfData.Pages.forEach((page) => {
         page.Texts.forEach((textItem) => {
           textItem.R.forEach((r) => {
-            text += decodeURIComponent(r.T) + " ";
+            try {
+              text += decodeURIComponent(r.T) + " ";
+            } catch (e) {
+              text += r.T + " ";
+            }
           });
         });
         text += "\n";
