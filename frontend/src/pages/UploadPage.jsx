@@ -28,7 +28,7 @@ function UploadPage({ setAnalysis }) {
     formData.append("resume", file);
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/resume/upload",
+        "https://ai-resume-backend-4xzc.onrender.com/api/resume/upload",
         formData
       );
 
