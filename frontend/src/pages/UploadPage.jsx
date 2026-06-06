@@ -31,19 +31,16 @@ function UploadPage({ setAnalysis }) {
         "https://ai-resume-backend-4xzc.onrender.com/api/resume/upload",
         formData
       );
-
       if (!response.data.resumeText || response.data.resumeText.trim() === "") {
         setShowNoDataDialog(true);
         setLoading(false);
         return;
       }
-
       if (response.data.notResume) {
         setShowNotResumeDialog(true);
         setLoading(false);
         return;
       }
-
       localStorage.setItem("resumeAnalysis", response.data.analysis);
       setAnalysis(response.data.analysis);
     } catch (err) {
@@ -55,11 +52,81 @@ function UploadPage({ setAnalysis }) {
   const isPdf = file && file.name.endsWith(".pdf");
   const fileNameColor = file ? (isPdf ? "#4CAF7C" : "#E05555") : "#6A6660";
 
-  const btnHoverStyle = `
+  const styles = `
     .main-btn:hover { transform: scale(1.03); }
     .main-btn:active { transform: scale(0.97); }
     .choose-btn:hover { transform: scale(1.03); }
     .choose-btn:active { transform: scale(0.97); }
+
+    .upload-outer {
+      min-height: 100vh;
+      background-color: #0A0A0A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .upload-card {
+      background-color: #141414;
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 6px;
+      padding: 56px;
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .upload-title {
+      font-family: Georgia, serif;
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: 0.4em;
+      color: #C9A84C;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .upload-subtitle {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #6A6660;
+      text-align: center;
+      margin-bottom: 36px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .file-row {
+      background-color: #1C1C1C;
+      border: 1px solid rgba(240,237,232,0.08);
+      border-radius: 4px;
+      padding: 28px 24px;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .upload-card {
+        padding: 32px 20px;
+      }
+      .upload-title {
+        font-size: 20px;
+        letter-spacing: 0.2em;
+      }
+      .file-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 20px 16px;
+      }
+      .choose-btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
   `;
 
   const Dialog = ({ title, message, onClose }) => (
@@ -70,13 +137,14 @@ function UploadPage({ setAnalysis }) {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      zIndex: 999
+      zIndex: 999,
+      padding: "20px"
     }}>
       <div style={{
         backgroundColor: "#141414",
         border: "1px solid rgba(201,168,76,0.3)",
         borderRadius: "6px",
-        padding: "48px",
+        padding: "40px 32px",
         maxWidth: "420px",
         width: "100%",
         textAlign: "center"
@@ -125,15 +193,8 @@ function UploadPage({ setAnalysis }) {
   );
 
   return (
-    <div style={{
-      minHeight: "100vh",
-      backgroundColor: "#0A0A0A",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      padding: "40px"
-    }}>
-      <style>{btnHoverStyle}</style>
+    <div className="upload-outer">
+      <style>{styles}</style>
 
       {showNoDataDialog && (
         <Dialog
@@ -151,38 +212,11 @@ function UploadPage({ setAnalysis }) {
         />
       )}
 
-      <div style={{
-        backgroundColor: "#141414",
-        border: "1px solid rgba(201,168,76,0.25)",
-        borderRadius: "6px",
-        padding: "56px",
-        width: "100%",
-        maxWidth: "560px"
-      }}>
+      <div className="upload-card">
 
-        <h1 style={{
-          fontFamily: "Georgia, serif",
-          fontSize: "28px",
-          fontWeight: "300",
-          letterSpacing: "0.4em",
-          color: "#C9A84C",
-          textAlign: "center",
-          marginBottom: "8px"
-        }}>
-          RESUME AI
-        </h1>
+        <h1 className="upload-title">RESUME AI</h1>
 
-        <p style={{
-          fontSize: "11px",
-          letterSpacing: "0.22em",
-          textTransform: "uppercase",
-          color: "#6A6660",
-          textAlign: "center",
-          marginBottom: "36px",
-          fontFamily: "'Helvetica Neue', Arial, sans-serif"
-        }}>
-          AI Resume Analyser
-        </p>
+        <p className="upload-subtitle">AI Resume Analyser</p>
 
         <div style={{
           height: "1px",
@@ -216,17 +250,7 @@ function UploadPage({ setAnalysis }) {
           Upload Resume
         </p>
 
-        <div style={{
-          backgroundColor: "#1C1C1C",
-          border: "1px solid rgba(240,237,232,0.08)",
-          borderRadius: "4px",
-          padding: "28px 24px",
-          marginBottom: "28px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "16px"
-        }}>
+        <div className="file-row">
           <p style={{
             color: fileNameColor,
             fontSize: "14px",

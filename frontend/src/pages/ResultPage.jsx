@@ -16,9 +16,56 @@ function ResultPage({ analysis, setAnalysis }) {
     ["suggestions to improve", "suggestions", "to improve", "improvements", "areas for improvement"]
   ];
 
-  const btnStyle = `
+  const styles = `
     .result-btn:hover { transform: scale(1.03); }
     .result-btn:active { transform: scale(0.97); }
+
+    .cards-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }
+
+    .cards-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      width: 66.8%;
+      margin: 0 auto;
+    }
+
+    .result-title {
+      font-family: Georgia, serif;
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: 0.4em;
+      color: #C9A84C;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .cards-top {
+        grid-template-columns: 1fr 1fr;
+      }
+      .cards-bottom {
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .cards-top {
+        grid-template-columns: 1fr;
+      }
+      .cards-bottom {
+        grid-template-columns: 1fr;
+        width: 100%;
+      }
+      .result-title {
+        font-size: 20px;
+        letter-spacing: 0.2em;
+      }
+    }
   `;
 
   function extractSection(text, keywordList) {
@@ -60,14 +107,14 @@ function ResultPage({ analysis, setAnalysis }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "40px"
+        padding: "20px"
       }}>
-        <style>{btnStyle}</style>
+        <style>{styles}</style>
         <div style={{
           backgroundColor: "#141414",
           border: "1px solid rgba(201,168,76,0.25)",
           borderRadius: "6px",
-          padding: "56px",
+          padding: "48px 32px",
           width: "100%",
           maxWidth: "500px",
           textAlign: "center"
@@ -155,28 +202,19 @@ function ResultPage({ analysis, setAnalysis }) {
     <div style={{
       minHeight: "100vh",
       backgroundColor: "#0A0A0A",
-      padding: "52px 32px"
+      padding: "40px 20px"
     }}>
-      <style>{btnStyle}</style>
+      <style>{styles}</style>
       <div style={{ maxWidth: "1500px", margin: "0 auto" }}>
 
-        <div style={{ textAlign: "center", marginBottom: "48px" }}>
-          <h1 style={{
-            fontFamily: "Georgia, serif",
-            fontSize: "28px",
-            fontWeight: "300",
-            letterSpacing: "0.4em",
-            color: "#C9A84C",
-            marginBottom: "8px"
-          }}>
-            RESUME AI
-          </h1>
+        <div style={{ textAlign: "center", marginBottom: "40px" }}>
+          <h1 className="result-title">RESUME AI</h1>
           <p style={{
             fontSize: "11px",
             letterSpacing: "0.25em",
             textTransform: "uppercase",
             color: "#6A6660",
-            marginBottom: "28px",
+            marginBottom: "24px",
             fontFamily: "'Helvetica Neue', Arial, sans-serif"
           }}>
             Analysis Report
@@ -188,25 +226,12 @@ function ResultPage({ analysis, setAnalysis }) {
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr",
-            gap: "24px"
-          }}>
+          <div className="cards-top">
             {sections.slice(0, 3).map((content, index) => renderCard(content, index))}
           </div>
-
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "24px",
-            width: "66.8%",
-            margin: "0 auto"
-          }}>
+          <div className="cards-bottom">
             {sections.slice(3).map((content, index) => renderCard(content, index + 3))}
           </div>
-
         </div>
 
         <div style={{ textAlign: "center", marginTop: "48px" }}>
