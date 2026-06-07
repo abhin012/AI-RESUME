@@ -208,7 +208,21 @@ function ResultPage({ analysis, setAnalysis }) {
       <div style={{ maxWidth: "1500px", margin: "0 auto" }}>
 
         <div style={{ textAlign: "center", marginBottom: "40px" }}>
-          <h1 className="result-title">RESUME AI</h1>
+          <h1
+            className="result-title"
+            onClick={() => setAnalysis(null)}
+            style={{
+              fontFamily: "Georgia, serif",
+              fontSize: "28px",
+              fontWeight: "300",
+              letterSpacing: "0.4em",
+              color: "#C9A84C",
+              marginBottom: "8px",
+              cursor: "pointer"
+            }}
+          >
+            RESUME AI
+          </h1>
           <p style={{
             fontSize: "11px",
             letterSpacing: "0.25em",
