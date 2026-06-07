@@ -1,7 +1,6 @@
 import { useState } from "react";
 import UploadPage from "./pages/UploadPage";
 import ResultPage from "./pages/ResultPage";
-import MatchPage from "./pages/MatchPage";
 import MatchResultPage from "./pages/MatchResultPage";
 
 function App() {
