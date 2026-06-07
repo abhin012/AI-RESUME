@@ -97,4 +97,70 @@ router.post("/upload", upload.single("resume"), async (req, res) => {
   }
 });
 
+router.post("/match", upload.single("resume"), async (req, res) => {
+  try {
+    const resumeText = await extractTextFromPDF(req.file.path);
+    const jobDescription = req.body.jobDescription;
+
+    if (!resumeText || resumeText.trim() === "") {
+      return res.json({ success: false, noData: true });
+    }
+
+    const groqResponse = await fetch(
+      "https://api.groq.com/openai/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + process.env.GROQ_API_KEY
+        },
+        body: JSON.stringify({
+          model: "llama-3.3-70b-versatile",
+          messages: [
+            {
+              role: "user",
+              content: `You are a resume matcher. Compare the resume to the job description and return ONLY a JSON object with no extra text, no markdown, no backticks. The JSON must have exactly these fields:
+{
+  "matchScore": a number from 0 to 100,
+  "missingSkills": an array of strings,
+  "suggestions": an array of strings
+}
+
+Resume:
+${resumeText}
+
+Job Description:
+${jobDescription}`
+            }
+          ]
+        })
+      }
+    );
+
+    const groqData = await groqResponse.json();
+    const raw = groqData?.choices?.[0]?.message?.content;
+
+    if (!raw) {
+      return res.status(500).json({ success: false, message: "No response from AI" });
+    }
+
+    let matchResult;
+    try {
+      matchResult = JSON.parse(raw);
+    } catch (e) {
+      const jsonMatch = raw.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        matchResult = JSON.parse(jsonMatch[0]);
+      } else {
+        return res.status(500).json({ success: false, message: "Could not parse AI response" });
+      }
+    }
+
+    res.json({ success: true, matchResult });
+
+  } catch (err) {
+    console.log("Match error:", err);
+    res.status(500).json({ success: false, message: "Something went wrong" });
+  }
+});
 module.exports = router;

@@ -1,9 +1,12 @@
 import { useState } from "react";
 import UploadPage from "./pages/UploadPage";
 import ResultPage from "./pages/ResultPage";
+import MatchPage from "./pages/MatchPage";
+import MatchResultPage from "./pages/MatchResultPage";
 
 function App() {
   const [analysis, setAnalysis] = useState(null);
+  const [matchResult, setMatchResult] = useState(null);
 
   const handleSetAnalysis = (data) => {
     setAnalysis(data);
@@ -12,16 +15,22 @@ function App() {
   const handleClear = () => {
     localStorage.removeItem("resumeAnalysis");
     setAnalysis(null);
+    setMatchResult(null);
   };
 
+  if (analysis !== null) {
+    return <ResultPage analysis={analysis} setAnalysis={handleClear} />;
+  }
+
+  if (matchResult !== null) {
+    return <MatchResultPage matchResult={matchResult} onBack={handleClear} />;
+  }
+
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#0A0A0A" }}>
-      {analysis === null ? (
-        <UploadPage setAnalysis={handleSetAnalysis} />
-      ) : (
-        <ResultPage analysis={analysis} setAnalysis={handleClear} />
-      )}
-    </div>
+    <UploadPage
+      setAnalysis={handleSetAnalysis}
+      setMatchResult={setMatchResult}
+    />
   );
 }
 
