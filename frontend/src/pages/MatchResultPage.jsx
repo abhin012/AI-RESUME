@@ -107,9 +107,13 @@ function MatchResultPage({ matchResult, onBack }) {
         backgroundColor: "#141414",
         border: `1px solid ${scoreColor}`,
         borderRadius: "6px",
-        padding: "20px",
+        padding: "12px 20px",
         textAlign: "center",
-        marginBottom: "16px"
+        marginBottom: "12px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "24px"
       }}>
         <p style={{
           fontSize: "10px",
@@ -123,11 +127,11 @@ function MatchResultPage({ matchResult, onBack }) {
         </p>
         <p style={{
           fontFamily: "Georgia, serif",
-          fontSize: "56px",
+          fontSize: "40px",
           fontWeight: "300",
           color: scoreColor,
           lineHeight: "1",
-          marginBottom: "4px"
+          marginBottom: "0px"
         }}>
           {matchScore}
         </p>
@@ -135,7 +139,7 @@ function MatchResultPage({ matchResult, onBack }) {
           fontSize: "12px",
           color: "#6A6660",
           fontFamily: "'Helvetica Neue', Arial, sans-serif",
-          marginBottom: "8px"
+          marginBottom: "0px"
         }}>
           out of 100
         </p>
