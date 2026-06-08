@@ -122,7 +122,7 @@ router.post("/match", upload.single("resume"), async (req, res) => {
           messages: [
             {
               role: "user",
-              content: `You are a resume matcher. Compare the resume to the job description and return ONLY a JSON object with no extra text, no markdown, no backticks. The JSON must have exactly these fields:
+              content: `You are a resume matcher. First check if the job description is a real, legitimate job description. If it is NOT a real job description (e.g. random text, gibberish, spam, unrelated content), return ONLY this JSON: {"notValid": true}. If it IS a real job description, compare the resume to it and return ONLY a JSON object with no extra text, no markdown, no backticks. The JSON must have exactly these fields:
 {
   "matchScore": a number from 0 to 100,
   "missingSkills": an array of strings,
@@ -157,6 +157,10 @@ ${jobDescription}`
       } else {
         return res.status(500).json({ success: false, message: "Could not parse AI response" });
       }
+    }
+
+    if (matchResult.notValid) {
+      return res.json({ success: false, notValid: true });
     }
 
     res.json({ success: true, matchResult });

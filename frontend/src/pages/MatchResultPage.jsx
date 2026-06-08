@@ -91,10 +91,10 @@ function MatchResultPage({ matchResult, onBack }) {
       }} />
 
       <p style={{
-        fontSize: "10px",
+        fontSize: "11px",
         letterSpacing: "0.25em",
         textTransform: "uppercase",
-        color: "#6A6660",
+        color: "#C9A84C",
         textAlign: "center",
         marginBottom: "16px",
         fontFamily: "'Helvetica Neue', Arial, sans-serif"
@@ -106,25 +106,25 @@ function MatchResultPage({ matchResult, onBack }) {
       <div style={{
         display: "flex",
         justifyContent: "center",
-        marginBottom: "12px"
+        marginBottom: "16px"
       }}>
         <div style={{
           backgroundColor: "#141414",
-          border: `1px solid ${scoreColor}`,
+          border: `2px solid ${scoreColor}`,
           borderRadius: "6px",
-          padding: "20px 32px",
+          padding: "28px 48px",
           textAlign: "center",
           display: "inline-flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "4px",
-          minWidth: "180px"
+          gap: "6px",
+          minWidth: "240px"
         }}>
           <p style={{
-            fontSize: "10px",
-            letterSpacing: "0.2em",
+            fontSize: "11px",
+            letterSpacing: "0.25em",
             textTransform: "uppercase",
-            color: "#6A6660",
+            color: "#C9A84C",
             fontFamily: "'Helvetica Neue', Arial, sans-serif",
             margin: 0
           }}>
@@ -132,7 +132,7 @@ function MatchResultPage({ matchResult, onBack }) {
           </p>
           <p style={{
             fontFamily: "Georgia, serif",
-            fontSize: "48px",
+            fontSize: "64px",
             fontWeight: "300",
             color: scoreColor,
             lineHeight: "1",
@@ -141,19 +141,19 @@ function MatchResultPage({ matchResult, onBack }) {
             {matchScore}
           </p>
           <p style={{
-            fontSize: "11px",
-            color: "#6A6660",
+            fontSize: "13px",
+            color: "#9a9590",
             fontFamily: "'Helvetica Neue', Arial, sans-serif",
             margin: 0
           }}>
             out of 100
           </p>
           <p style={{
-            fontSize: "12px",
-            fontWeight: "600",
+            fontSize: "15px",
+            fontWeight: "700",
             color: scoreColor,
             fontFamily: "'Helvetica Neue', Arial, sans-serif",
-            letterSpacing: "0.05em",
+            letterSpacing: "0.08em",
             margin: 0
           }}>
             {matchScore >= 70 ? "Strong Match" : matchScore >= 40 ? "Moderate Match" : "Low Match"}
@@ -185,11 +185,11 @@ function MatchResultPage({ matchResult, onBack }) {
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
               {missingSkills.map((skill, i) => (
                 <li key={i} style={{
-                  color: "#C8C4C0",
+                  color: "#D0CCC8",
                   fontSize: "14px",
-                  fontWeight: "600",
+                  fontWeight: "500",
                   fontFamily: "'Helvetica Neue', Arial, sans-serif",
-                  padding: "5px 0",
+                  padding: "6px 0",
                   borderBottom: "1px solid rgba(255,255,255,0.04)",
                   lineHeight: "1.5"
                 }}>
@@ -225,11 +225,11 @@ function MatchResultPage({ matchResult, onBack }) {
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
               {suggestions.map((s, i) => (
                 <li key={i} style={{
-                  color: "#C8C4C0",
+                  color: "#D0CCC8",
                   fontSize: "14px",
-                  fontWeight: "600",
+                  fontWeight: "500",
                   fontFamily: "'Helvetica Neue', Arial, sans-serif",
-                  padding: "5px 0",
+                  padding: "6px 0",
                   borderBottom: "1px solid rgba(255,255,255,0.04)",
                   lineHeight: "1.5"
                 }}>

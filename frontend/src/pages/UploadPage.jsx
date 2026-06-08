@@ -48,6 +48,7 @@ function UploadPage({ setAnalysis, setMatchResult }) {
     if (!file) { setError("Please select a PDF file first"); return; }
     if (!file.name.endsWith(".pdf")) { setError("Only PDF files are supported"); return; }
     if (!jobDescription.trim()) { setError("Please paste a job description"); return; }
+    if (jobDescription.trim().length < 50) { setError("Job description seems too short. Please paste the full job description."); return; }
     setError("");
     setLoading(true);
     const formData = new FormData();
@@ -58,6 +59,11 @@ function UploadPage({ setAnalysis, setMatchResult }) {
         "https://ai-resume-backend-4xzc.onrender.com/api/resume/match",
         formData
       );
+      if (response.data.notValid) {
+        setError("The job description doesn't appear to be valid. Please paste a real job description.");
+        setLoading(false);
+        return;
+      }
       if (response.data.success) {
         setMatchResult(response.data.matchResult);
       } else {
@@ -67,7 +73,7 @@ function UploadPage({ setAnalysis, setMatchResult }) {
       setError("Something went wrong. Please try again.");
     }
     setLoading(false);
-  };
+};
 
   const isPdf = file && file.name.endsWith(".pdf");
   const fileNameColor = file ? (isPdf ? "#4CAF7C" : "#E05555") : "#6A6660";

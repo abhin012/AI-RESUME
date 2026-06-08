@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UploadPage from "./pages/UploadPage";
 import ResultPage from "./pages/ResultPage";
 import MatchResultPage from "./pages/MatchResultPage";
@@ -7,11 +7,25 @@ function App() {
   const [analysis, setAnalysis] = useState(null);
   const [matchResult, setMatchResult] = useState(null);
 
+  useEffect(() => {
+    const savedAnalysis = sessionStorage.getItem("analysis");
+    const savedMatch = sessionStorage.getItem("matchResult");
+    if (savedAnalysis) setAnalysis(savedAnalysis);
+    if (savedMatch) setMatchResult(JSON.parse(savedMatch));
+  }, []);
+
   const handleSetAnalysis = (data) => {
+    sessionStorage.setItem("analysis", data);
     setAnalysis(data);
   };
 
+  const handleSetMatchResult = (data) => {
+    sessionStorage.setItem("matchResult", JSON.stringify(data));
+    setMatchResult(data);
+  };
+
   const handleClear = () => {
+    sessionStorage.clear();
     localStorage.removeItem("resumeAnalysis");
     setAnalysis(null);
     setMatchResult(null);
@@ -28,7 +42,7 @@ function App() {
   return (
     <UploadPage
       setAnalysis={handleSetAnalysis}
-      setMatchResult={setMatchResult}
+      setMatchResult={handleSetMatchResult}
     />
   );
 }
