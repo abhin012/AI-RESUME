@@ -2,7 +2,7 @@
 
 A full-stack web application that uses AI to analyse resumes and match them against job descriptions. Generates structured analysis across 5 categories and computes ATS-style job match scores out of 100.
 
-**Demo:** [ai-resume-phi-orpin.vercel.app](https://ai-resume-phi-orpin.vercel.app)
+**Demo:** [ai-resume-abhin.vercel.app](https://ai-resume-abhin.vercel.app)
 
 ---
 
