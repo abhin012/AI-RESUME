@@ -13,11 +13,14 @@ A full-stack web application that uses AI to analyse resumes and match them agai
 
 ### Resume Analysis
 ![Resume Analysis](screenshots/analysis.png)
+
 ![Resume Analysis](screenshots/analysis2.png)
 
 ### Job Match
-![Job Match](screenshots/match.png)
 ![Job Match](screenshots/matchjob.png)
+
+![Job Match](screenshots/match.png)
+
 ---
 
 ## Architecture
