@@ -104,54 +104,61 @@ function MatchResultPage({ matchResult, onBack }) {
 
       {/* Score Card */}
       <div style={{
-        backgroundColor: "#141414",
-        border: `1px solid ${scoreColor}`,
-        borderRadius: "6px",
-        padding: "12px 20px",
-        textAlign: "center",
-        marginBottom: "12px",
         display: "flex",
-        alignItems: "center",
         justifyContent: "center",
-        gap: "24px"
+        marginBottom: "12px"
       }}>
-        <p style={{
-          fontSize: "10px",
-          letterSpacing: "0.2em",
-          textTransform: "uppercase",
-          color: "#6A6660",
-          marginBottom: "8px",
-          fontFamily: "'Helvetica Neue', Arial, sans-serif"
+        <div style={{
+          backgroundColor: "#141414",
+          border: `1px solid ${scoreColor}`,
+          borderRadius: "6px",
+          padding: "20px 32px",
+          textAlign: "center",
+          display: "inline-flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "4px",
+          minWidth: "180px"
         }}>
-          Match Score
-        </p>
-        <p style={{
-          fontFamily: "Georgia, serif",
-          fontSize: "40px",
-          fontWeight: "300",
-          color: scoreColor,
-          lineHeight: "1",
-          marginBottom: "0px"
-        }}>
-          {matchScore}
-        </p>
-        <p style={{
-          fontSize: "12px",
-          color: "#6A6660",
-          fontFamily: "'Helvetica Neue', Arial, sans-serif",
-          marginBottom: "0px"
-        }}>
-          out of 100
-        </p>
-        <p style={{
-          fontSize: "13px",
-          fontWeight: "600",
-          color: scoreColor,
-          fontFamily: "'Helvetica Neue', Arial, sans-serif",
-          letterSpacing: "0.05em"
-        }}>
-          {matchScore >= 70 ? "Strong Match" : matchScore >= 40 ? "Moderate Match" : "Low Match"}
-        </p>
+          <p style={{
+            fontSize: "10px",
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: "#6A6660",
+            fontFamily: "'Helvetica Neue', Arial, sans-serif",
+            margin: 0
+          }}>
+            Match Score
+          </p>
+          <p style={{
+            fontFamily: "Georgia, serif",
+            fontSize: "48px",
+            fontWeight: "300",
+            color: scoreColor,
+            lineHeight: "1",
+            margin: 0
+          }}>
+            {matchScore}
+          </p>
+          <p style={{
+            fontSize: "11px",
+            color: "#6A6660",
+            fontFamily: "'Helvetica Neue', Arial, sans-serif",
+            margin: 0
+          }}>
+            out of 100
+          </p>
+          <p style={{
+            fontSize: "12px",
+            fontWeight: "600",
+            color: scoreColor,
+            fontFamily: "'Helvetica Neue', Arial, sans-serif",
+            letterSpacing: "0.05em",
+            margin: 0
+          }}>
+            {matchScore >= 70 ? "Strong Match" : matchScore >= 40 ? "Moderate Match" : "Low Match"}
+          </p>
+        </div>
       </div>
 
       {/* Cards */}
