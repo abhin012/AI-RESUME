@@ -20,7 +20,7 @@ const resumeRoute = require("./routes/resume");
 const app = express();
 
 app.use(cors({
-  origin: ["https://ai-resume-phi-orpin.vercel.app", "http://localhost:5173"]
+  origin: ["https://ai-resume-abhin.vercel.app", "http://localhost:5173"]
 }));
 app.use(express.json());
 
