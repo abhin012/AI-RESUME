@@ -252,8 +252,7 @@ http://localhost:5173
 
 ## License
 
-<<<<<<< HEAD
+
 This project is open source and available under the [MIT License](LICENSE).
-=======
-This project is open source and available under the [MIT License](LICENSE).
->>>>>>> 68b96ad (Readme file update)
+
+
