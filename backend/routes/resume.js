@@ -81,13 +81,16 @@ router.post("/upload", upload.single("resume"), async (req, res) => {
       return res.json({ success: false, notResume: true });
     }
 
-    const newResume = new Resume({
-      filename: req.file.originalname,
-      resumeText: resumeText,
-      analysis: analysis
-    });
-
-    await newResume.save();
+    await Resume.findOneAndUpdate(
+  { filename: req.file.originalname },
+  {
+    filename: req.file.originalname,
+    resumeText: resumeText,
+    analysis: analysis,
+    uploadedAt: new Date()
+  },
+  { upsert: true, new: true }
+);
 
     res.json({ success: true, analysis: analysis, resumeText: resumeText });
 
