@@ -6,6 +6,13 @@ A full-stack web application that uses AI to analyse resumes and match them agai
 
 ---
 
+## Highlights
+
+- Built and deployed a full-stack AI-powered resume analyzer and ATS job matcher.
+- Integrated LLaMA 3.3 70B via Groq API for resume evaluation and skill-gap analysis.
+- Implemented PDF parsing, MongoDB persistence, duplicate detection, and responsive UI.
+- Deployed frontend on Vercel and backend on Render with cloud-hosted MongoDB Atlas.
+
 ## Screenshots
 
 ### Upload Page
