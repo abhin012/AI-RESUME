@@ -12,9 +12,6 @@ const uploadDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
 }
-
-console.log("MONGO_URI received:", process.env.MONGO_URI);
-
 const resumeRoute = require("./routes/resume");
 
 const app = express();
