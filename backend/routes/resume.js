@@ -59,7 +59,7 @@ router.post("/upload", upload.single("resume"), async (req, res) => {
           "Authorization": "Bearer " + process.env.GROQ_API_KEY
         },
         body: JSON.stringify({
-          model: "llama-3.3-70b-versatile",
+          model: "openai/gpt-oss-120b",
           messages: [
             {
               role: "user",
@@ -71,7 +71,18 @@ router.post("/upload", upload.single("resume"), async (req, res) => {
     );
 
     const groqData = await groqResponse.json();
-    const analysis = groqData?.choices?.[0]?.message?.content;
+
+if (!groqResponse.ok) {
+  console.error("Groq API error:", groqResponse.status, groqData);
+
+  return res.status(500).json({
+    success: false,
+    message: "Groq API error",
+    error: groqData?.error?.message || "Unknown Groq error"
+  });
+}
+
+const analysis = groqData?.choices?.[0]?.message?.content;
 
     if (!analysis) {
       return res.status(500).json({ success: false, message: "No analysis returned" });
@@ -118,7 +129,7 @@ router.post("/match", upload.single("resume"), async (req, res) => {
           "Authorization": "Bearer " + process.env.GROQ_API_KEY
         },
         body: JSON.stringify({
-          model: "llama-3.3-70b-versatile",
+          model: "openai/gpt-oss-120b",
           messages: [
             {
               role: "user",
